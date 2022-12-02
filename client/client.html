@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang='sk'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Home page</title>
+    <style type='text/css'>
+        #popup {
+            display: none;
+            width: 400px;
+            height: 200px;
+            left: calc((100% - 400px) / 2);
+            top: calc((100% - 200px) / 2);
+            position: absolute;
+            background-color: white;
+            z-index: 999;
+            padding: 10px;
+        }
+
+        #mask {
+            display: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: gray;
+            z-index: 998;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label>
+            Title
+        </label>
+        <input type="text" id="title" />
+
+        <label>
+            Content
+        </label>
+        <input type="text" id="content" />
+
+        <label>Category</label>
+        <div id="categoriesSelect"></div>
+
+        <button type="submit" onclick="createPost(event)">
+            Create post
+        </button>
+    </form>
+
+    <br />
+    <input type="checkbox" id="fullView" onchange="reloadPosts(event)" /> Full View
+
+    <hr />
+
+    <div id="categoriesFilter"></div>
+
+    <div id="posts"></div>
+
+    <div id="popup">
+        <form>
+            <label>
+                Title
+            </label>
+            <input type="text" id="edit_title" />
+
+            <br />
+            <br />
+
+            <label>
+                Content
+            </label>
+            <input type="text" id="edit_content" />
+
+            <input type="hidden" id="edit_id" />
+
+            <br />
+            <br />
+
+            <button type="submit" onclick="cancel(event)">
+                Cancel post
+            </button>
+
+            <button type="submit" onclick="updatePost(event)">
+                Update post
+            </button>
+        </form>
+    </div>
+
+    <div id="mask"></div>
+
+    <script src='app.js'></script>
+
+    <script>
+        getPosts();
+        getCategories()
+    </script>
+</body>
+
+</html>
